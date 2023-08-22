@@ -2,6 +2,11 @@ fn main() {
     let s = "salt air, and the rust on your door";
     let s2 = "i never wanted anything more";
 
+    let mut s3: String = String::from("hello world");
+
+    let word = first_word(&s3);
+
+    println!("the first word is: {}", word);
     println!("count_chars: {}", count_chars(s));
     println!("count_chars_2: {}", count_chars_2(s.to_string()));
     println!("count_char_in_string: {}", count_char_in_string(s, 'l'));
@@ -11,6 +16,18 @@ fn main() {
         trim_whitespace(format!("    {s}       ").as_str())
     );
     println!("merge_sort, {:?}", merge_sort(vec!["b", "a", "c", "b"]));
+}
+
+fn first_word(s: &String) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
 }
 
 fn count_chars(s: &str) -> i32 {
